@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{route('home')}}">
                   ToDo App
@@ -28,6 +28,12 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @guest
+                    @if (Route::has('login'))
+                    {{''}}
+
+                    @endif
+                    @else
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                       <li class="nav-item mx-1"> <a class="nav-link" href="{{route('todos.index')}}">My Tasks
@@ -35,6 +41,8 @@
                       <li class="nav-item mx-1"><a class="nav-link" href="{{route('todos.create')}}">Add Task
                     </a></li>
                     </ul>
+
+                    @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
