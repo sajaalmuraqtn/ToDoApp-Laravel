@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Requests\TodoRequest;
-use App\Models\todo;
+use App\Models\Todo;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class todocontrollers extends Controller
 {
     public function index()
     {
-        $tasks = todo::get();
-        return view('todos.index',['todos'=>$tasks]);
+        $tasks = Todo::query()
+            ->where('user_id', '=', Auth::user()->id)
+            ->get();
+
+        return view('todos.index', ['todos' => $tasks]);
     }
     public function create(){
      return view('todos.create');
@@ -32,13 +38,13 @@ class todocontrollers extends Controller
         return redirect('todos/index')->with('status', 'task updated successfully');
     }
  }
-    public function store(TodoRequest $request) {
+    public function store(TodoRequest $request ) {
         $task = new Todo();
         // $user=User::get();
         $task->title = $request->title;
         $task->description = $request->description;
         $task->is_completed = 0;
-        $task->user_id=1;
+        $task->user_id=Auth::user()->id;
         //  $user->id;
 
         if ($task->save()) {

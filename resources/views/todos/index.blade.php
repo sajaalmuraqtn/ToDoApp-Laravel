@@ -10,9 +10,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Last Update</th>
                     <th scope="col">Completed</th>
                     <th scope="col">Actions</th>
                     <th scope="col">Actions</th>
@@ -22,9 +22,9 @@
                 @foreach ($todos as $task )
 
                 <tr class="mb-3">
-                <th scope="row">{{$task->id}}</th>
                 <td>{{$task->title}}</td>
                 <td>{{$task->description}}</td>
+                <td>{{$task->updated_at}}</td>
                 <td @if ($task->is_completed==0)
                     class="bg-danger text-white"
                     @else

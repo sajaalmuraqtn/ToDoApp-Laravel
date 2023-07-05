@@ -16,7 +16,7 @@
     </div>
 @endif
                 <div class="card-body">
-                    <form method="post" action="{{route('todos.store')}}">
+                    <form action="{{route('todos.store')}}" method="post">
                       @csrf
                         <div class="mb-3">
                           <label  class="form-label">Task Title</label>
